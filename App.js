@@ -11,21 +11,23 @@ import { useState } from 'react';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {name: 'mike', key: 1},
-    {name: 'james', key: 2},
-    {name: 'jordan', key: 3},
-    {name: 'caleb', key: 4},
-    {name: 'isaac', key: 5},
-    {name: 'jordan', key: 6},
-    {name: 'caleb', key: 7},
-    {name: 'isaac', key: 8},    
-    {name: 'caleb', key: 9},
-    {name: 'isaac', key: 10},
+    {name: 'mike', id: 1},
+    {name: 'james', id: 2},
+    {name: 'jordan', id: 3},
+    {name: 'caleb', id: 4},
+    {name: 'isaac', id: 5},
+    {name: 'jordan', id: 6},
+    {name: 'caleb', id: 7},
+    {name: 'isaac', id: 8},    
+    {name: 'caleb', id: 9},
+    {name: 'isaac', id: 10},
   ])
   
   return (
     <View style={styles.container}>
       <FlatList 
+        numColumns={2}
+        keyExtractor={(item) => item.id}
         data={people}
         renderItem={({item}) => (
           <Text style={styles.personComp}>{item.name}</Text>
@@ -46,8 +48,9 @@ const styles = StyleSheet.create({
   },
   personComp: {
     backgroundColor: 'pink',
-    width: 350,
+    width: 100,
     marginVertical: 10,
+    marginHorizontal: 20,
     padding: 30
   }
 });
