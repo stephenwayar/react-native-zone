@@ -1,6 +1,13 @@
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Button, 
+  TextInput, 
+  ScrollView,
+  FlatList 
+} from 'react-native';
 import { useState } from 'react';
-import TextAncestor from 'react-native/Libraries/Text/TextAncestor';
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -18,18 +25,12 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {people.map((person) => {
-          return(
-            <View>
-              <Text 
-                style={styles.person} 
-                key={person.key}>{person.name}
-              </Text>
-            </View>
-          )
-        })}
-      </ScrollView>    
+      <FlatList 
+        data={people}
+        renderItem={({item}) => (
+          <Text style={styles.personComp}>{item.name}</Text>
+        )}
+      />
     </View>
   );
 }
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center'
   },
-  person: {
+  personComp: {
     backgroundColor: 'pink',
     width: 350,
     marginVertical: 10,
